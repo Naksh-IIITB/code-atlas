@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CODE ATLAS</title><link rel="stylesheet" href="/style.css"><script src="/ui.js" defer></script></head>
+<body class="atlas"><header><button id="sidebar" aria-label="Toggle navigation">Menu</button>
+<span class="brand">CODE ATLAS</span><span class="spacer"></span><button id="health">Checking Ollama</button>
+<button id="theme">Theme</button></header><div class="shell"><nav aria-label="Workspaces"><button type="button" data-pane="repos" aria-current="true">Repositories</button><button type="button" data-pane="analysis" aria-current="false">Source and metrics</button><button type="button" data-pane="structure" aria-current="false">Relationships</button><button type="button" data-pane="assistant" aria-current="false">Code assistant</button></nav>
+<main><div id="status" role="status" aria-live="polite"></div><section id="repos"><h1>Repository workspace</h1><p>Index source, inspect structure, and query your repository with a local model.</p>
+<div class="grid"><div class="panel"><h2>Import source</h2>
+<form id="local"><label>Local Git repository path<input name="path" placeholder="~/Developer/project" required></label><button class="primary">Index local repository</button></form>
+<form id="clone"><label>Public GitHub URL<input name="url" type="url" placeholder="https://github.com/owner/repo" required></label><button>Clone and index</button></form>
+<form id="zip"><label>Repository ZIP<input id="zip-file" type="file" accept=".zip" required></label><button>Index ZIP</button></form></div>
+<div class="panel"><h2>Saved snapshots</h2><div id="repo-list"></div></div></div></section>
+<section id="analysis" hidden><h1>Source and metrics</h1><p>Python uses AST analysis. Other languages have heuristic symbols and imports.</p>
+<div id="a-metrics" class="metrics"></div><div class="grid"><div class="panel"><h2>Files</h2><label>Filter paths<input id="file-filter" type="search"></label><div id="files" class="timeline"></div></div>
+<div class="panel"><h2 id="file-heading">Source</h2><pre id="file-source"></pre></div></div>
+<div class="grid"><div class="panel"><h2>Complexity and symbols</h2><div id="symbols" class="timeline"></div></div><div class="panel"><h2>Repository details</h2><div id="repo-details"></div><button id="report">Export Markdown report</button></div></div></section>
+<section id="structure" hidden><h1>Repository relationships</h1><p>Explore imports, syntactic call sites, and Python class inheritance.</p>
+<div class="panel"><div class="form-grid"><label>Filter nodes<input id="edge-filter" type="search"></label><label>Relationship<select id="edge-kind"><option value="">All</option><option>import</option><option>call</option><option>inherits</option></select></label></div>
+<div id="edges" class="graph"></div><button id="export-graph">Export visible graph as SVG</button></div></section>
+<section id="assistant" hidden><h1>Code assistant</h1><p>Search line-level evidence or use it to explain and document the code.</p>
+<div class="panel"><form id="a-query"><label>Question or search term<input name="query" type="search" required></label><div class="form-grid">
+<label>File scope<select id="scope" name="path"></select></label><label>Task<select name="prompt"><option>Explain the repository question.</option><option>Explain for a beginner.</option><option>Explain the architecture in technical depth.</option><option>Draft a README grounded in the repository evidence.</option><option>Generate technical documentation.</option><option>Suggest tests and refactoring opportunities.</option><option>Generate repository-specific interview questions.</option><option>Review the selected source for defensive quality and security issues. Explain fixes without exploit code.</option></select></label>
+<label>Chat model<select id="model" name="model"></select></label><label>Embedding model<select id="embedding" name="embedding"></select></label></div>
+<label class="check"><input type="checkbox" name="semantic"> Rerank with local embeddings</label>
+<div class="row"><button value="search">Search source</button><button class="primary" value="ask">Ask Ollama</button><button id="cancel" type="button" hidden>Cancel</button></div></form>
+<pre id="answer"></pre><div id="sources"></div></div></section>
+</main></div></body></html>
