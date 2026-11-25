@@ -15,4 +15,4 @@ h2{font-size:1.25rem;margin:0 0 .6em}ul{padding-left:20px}pre{background:#10121a
 <section><h2>Run it on your computer</h2><p>Install Python 3.11 or later. Download or clone the source and run these commands inside the project folder.</p>
 <pre>sh install.sh
 sh run.sh</pre><p>Open <a href="http://127.0.0.1:8502">127.0.0.1:8502</a> once your server is running. AI features use an optional local Ollama server.</p></section>
-<section><h2>Current scope</h2><p>C, C++, Java, JavaScript, and TypeScript use heuristic extraction. Python calls are syntactic candidates. Secret filtering is heuristic. ZIP imports use built-in exclusions, while local Git imports use Git&#x27;s ignore rules for untracked files.</p></section></main></html>
+<section><h2>Current scope</h2><p>C, C++, Java, JavaScript, and TypeScript use Tree-sitter when the grammar packages are installed. The app falls back to heuristic extraction when they are missing. Call relationships are syntactic candidates. Secret filtering is heuristic. ZIP imports use built-in exclusions, while local Git imports use Git&#x27;s ignore rules for untracked files.</p></section></main></html>

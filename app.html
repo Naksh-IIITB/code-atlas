@@ -10,7 +10,7 @@
 <form id="clone"><label>Public GitHub URL<input name="url" type="url" placeholder="https://github.com/owner/repo" required></label><button>Clone and index</button></form>
 <form id="zip"><label>Repository ZIP<input id="zip-file" type="file" accept=".zip" required></label><button>Index ZIP</button></form></div>
 <div class="panel"><h2>Saved snapshots</h2><div id="repo-list"></div></div></div></section>
-<section id="analysis" hidden><h1>Source and metrics</h1><p>Python uses AST analysis. Other languages have heuristic symbols and imports.</p>
+<section id="analysis" hidden><h1>Source and metrics</h1><p>Python uses its native AST. C, C++, Java, JavaScript and TypeScript use syntax trees when their grammar packages are installed.</p>
 <div id="a-metrics" class="metrics"></div><div class="grid"><div class="panel"><h2>Files</h2><label>Filter paths<input id="file-filter" type="search"></label><div id="files" class="timeline"></div></div>
 <div class="panel"><h2 id="file-heading">Source</h2><pre id="file-source"></pre></div></div>
 <div class="grid"><div class="panel"><h2>Complexity and symbols</h2><div id="symbols" class="timeline"></div></div><div class="panel"><h2>Repository details</h2><div id="repo-details"></div><button id="report">Export Markdown report</button></div></div></section>

@@ -10,6 +10,7 @@ from collections import Counter, defaultdict
 from pathlib import Path, PurePosixPath
 from urllib.parse import urlsplit
 from core import DATA, db, rows, rank, chat
+from syntax import tree_sitter_inspect
 
 PORT = 8502
 LANGUAGES = {".py":"Python", ".c":"C", ".h":"C", ".cpp":"C++", ".cc":"C++", ".hpp":"C++",
@@ -107,6 +108,9 @@ def inspect(file):
             elif isinstance(node, ast.ImportFrom):
                 imports.append("."*node.level+(node.module or ""))
     else:
+        parsed = tree_sitter_inspect(file)
+        if parsed is not None:
+            return parsed
         declarations = re.compile(r"\b(class|interface|struct|enum|function)\s+([A-Za-z_]\w*)|^\s*(?:[\w:*&<>]+\s+)+([A-Za-z_]\w*)\s*\([^;]*\)\s*\{")
         for number, line in enumerate(code.splitlines(), 1):
             match = declarations.search(line)
